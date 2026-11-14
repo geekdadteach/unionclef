@@ -1,3 +1,5 @@
+> **NewEarth / Bob deployment (Randy's fork, added 2026-11-13):** this fork runs as "Bob" (MineBobNE) on Randy's NewEarth server. Before touching that deployment read [`docs/AI_HANDOFF.md`](docs/AI_HANDOFF.md) (complete takeover document) and [`docs/AI_CHANGELOG.md`](docs/AI_CHANGELOG.md) (newest first). The rest of this file is the upstream author's rules for code work in this tree. Public repo: never commit secrets, login sessions, tokens or Discord IDs.
+
 # unionclef — Project Context
 
 RE-READ THIS FULLY IF THE CONVERSATION WAS SUMMARIZED! Always read this file at the start of every conversation before doing anything else.
