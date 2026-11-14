@@ -16,14 +16,14 @@ Status words: Proposed → Coded → Tested → Merged → Deployed → Live-ver
 ## 2. Current state (13 Nov 2026)
 
 - **Bob is OFF** since 2 Nov 2026 (Randy: free resources for a dev project; keep off across reboots and a macOS upgrade). Startup jobs disabled, nothing deleted. **Stays off until Randy explicitly says to turn him on.**
-- Ran on **Mac mini .20** (`192.168.1.20`, user `test`, under `~/BobRuntime/unionclef/`). Since 9 Nov Randy is **moving Bob to Leon** (`192.168.1.144`, user `dadmin`) with a local agent; the ViaProxy login was copied; the rest is **UNVERIFIED**. Leon needs `dadmin` logged in as the active console user for the Minecraft window (conflicts with that room's dark-screen rule) — Randy hasn't chosen yet.
-- Which UnionClef build/jar is installed on .20 is **UNVERIFIED** (installed 1 Nov from this fork, Fabric **1.21.11**).
-- Brain: driver default is `andy-4.2-air` via LM Studio on Leon (`192.168.1.144:1234`); Randy decided on 3 Nov to move to a **hosted API model** (key pending, model not chosen).
+- Ran on the Mac mini (see the private systems repo), under `~/BobRuntime/unionclef/`. Since 9 Nov Randy is **moving Bob to Leon** (see the private systems repo) with a local agent; the ViaProxy login was copied; the rest is **UNVERIFIED**. Leon needs the local console user logged in as the active session for the Minecraft window (conflicts with that room's dark-screen rule) — Randy hasn't chosen yet.
+- Which UnionClef build/jar is installed on the Mac mini is **UNVERIFIED** (installed 1 Nov from this fork, Fabric **1.21.11**).
+- Brain: driver default is `andy-4.2-air` via LM Studio on Leon (see the private systems repo); Randy decided on 3 Nov to move to a **hosted API model** (key pending, model not chosen).
 
 ## 3. Runtime chain
 
 ```
-NewEarth Paper 26.3 (192.168.1.63:25565)
+NewEarth Paper 26.3 (the NewEarth server; see the private systems repo)
    ▲
 ViaProxy 127.0.0.1:25599 (version bridge 1.21.11 → 26.3; holds the account login — secret)
    ▲
@@ -38,7 +38,7 @@ driver.py (private, on the host) ──► OpenAI-compatible LLM API
 
 ## 4. The driver (lives on the host, not here)
 
-Path on .20: `~/BobRuntime/unionclef/driver/` (`driver.py`, `README.md`, `config.json`, `state/`). Full detail: minebob `docs/AI_HANDOFF.md` §6. Summary:
+Path on the Mac mini: `~/BobRuntime/unionclef/driver/` (`driver.py`, `README.md`, `config.json`, `state/`). Full detail: minebob `docs/AI_HANDOFF.md` §6. Summary:
 
 - Exposes **all 60 UnionClef MCP tools** (from live `tools/list`, falling back to a cached copy from the jar) plus the driver's own tools — 82 total, each in one group. Core group always shown (eat, stop, defend, wait, project/step/notes/memory tools, tool-group tools, getGameState, inventorySpace, getBlocksAround, canReach, runAwayPlayer, runAwayStop). Other groups (perception, movement, survival/combat/night/food, gathering, building, worldedit, protection, inventory/menus, commands, misc) are added deterministically by situation and task keywords; the model can request any group, and calling an unshown tool adds its group. **Nothing is out of reach** — Randy rejected an earlier trimmed 19-tool set on 3 Nov.
 - Refused to the model: ConnectToServer, punk/punkAny, shootArrowAt, chat (unless enabled), slash commands, and @punk/@gamer/@test/@reload_settings/@set_gamma/@custom.
@@ -58,12 +58,12 @@ Path on .20: `~/BobRuntime/unionclef/driver/` (`driver.py`, `README.md`, `config
 
 | Machine | Role | Owner bot |
 |---|---|---|
-| Mac mini .20 `192.168.1.20` (user `test`) | Bob's runtime until the move | Randy MM 20 |
-| Leon `192.168.1.144` (user `dadmin`) | LM Studio; Bob's new runtime host (move in progress) | Leon Mac Mini 143 |
-| linuxidk `192.168.1.63` | NewEarth server; all server-side changes | Minecraft Server 63 |
-| LinuxGrok .60, olddell .109 | **Retired / gone** — never use | — |
+| The Mac mini (see the private systems repo) | Bob's runtime until the move | Randy MM 20 |
+| Leon (see the private systems repo) | LM Studio; Bob's new runtime host (move in progress) | Leon Mac Mini 143 |
+| The NewEarth server (see the private systems repo) | NewEarth server; all server-side changes | Minecraft Server 63 |
+| LinuxGrok and olddell | **Retired / gone** — never use | — |
 
-Who to ask: Bob behaviour/driver → MineBobNE; .20 → Randy MM 20; Leon → Leon Mac Mini 143; server → Minecraft Server 63; GitHub → the GitHub bot; decisions → Randy.
+Who to ask: Bob behaviour/driver → MineBobNE; the Mac mini → Randy MM 20; Leon → Leon Mac Mini 143; server → Minecraft Server 63; GitHub → the GitHub bot; decisions → Randy.
 
 ## 7. Randy's rules for Bob (apply to any work touching this deployment)
 
@@ -80,3 +80,5 @@ Who to ask: Bob behaviour/driver → MineBobNE; .20 → Randy MM 20; Leon → Le
 - MCP listens on all interfaces by default.
 - Don't run Bob on two hosts with the same login at once.
 - Upstream AGENTS.md rules (video reports, Telegram, checkpoints) are the upstream author's workflow, not Randy's.
+
+
